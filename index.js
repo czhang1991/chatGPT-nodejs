@@ -27,7 +27,7 @@ router.get("/chat", async (ctx, next) => {
         temperature: 0.2
     })
     // 将生成的内容返回给客户端
-    ctx.body = res.data.choices
+    ctx.body = res.data.choices[0].text
 });
 
 router.get("/image", async (ctx, next) => {
