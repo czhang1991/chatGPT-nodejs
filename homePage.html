@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>对话式页面</title>
+  <style>
+    /* 样式表 */
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="message-container">
+      <div class="bot-message">您好，欢迎来到我们的对话式页面。请问您需要帮助吗？</div>
+    </div>
+    <div class="input-container">
+      <input type="text" class="input-field" placeholder="请输入您的问题">
+      <button class="submit-btn">发送</button>
+    </div>
+  </div>
+
+  <script>
+    // 获取页面元素
+    const messageContainer = document.querySelector('.message-container');
+    const inputField = document.querySelector('.input-field');
+    const submitBtn = document.querySelector('.submit-btn');
+
+    // 定义函数，用于发送请求并更新页面内容
+    function sendMessage() {
+    	// 获取用户输入的文本
+      	const userInput = inputField.value;
+
+      	// 创建新的对话消息元素
+      	const userMessage = document.createElement('div');
+      	userMessage.className = 'user-message';
+      	userMessage.innerText = userInput;
+      	messageContainer.appendChild(userMessage);
+
+      	// 发送请求，获取回复内容
+      	// 请根据实际情况替换此处的API URL和参数
+      	//var url = 'https://chatgpt-nodejs-production-56da.up.railway.app/chat?prompt='+userInput
+      	var url = 'http://127.0.0.1:3000/chat'
+      	fetch(url,{
+      		mode:'no-cors',
+      	})
+      	.then(response=>{
+      		console.log(response.body)
+      	})
+      	.then(data=>{
+      		console.log(data)
+      		// 创建新的对话消息元素
+	        const botMessage = document.createElement('div');
+	        botMessage.className = 'bot-message';
+	        botMessage.innerText = data.output;
+	        messageContainer.appendChild(botMessage);
+      	})
+      	.catch(error => {
+        	console.error('Error:', error);
+      	});
+
+
+	    // 清空输入框
+	    inputField.value = '';
+    }
+
+    // 绑定点击事件，触发发送请求
+    submitBtn.addEventListener('click', sendMessage);
+  </script>
+</body>
+</html>

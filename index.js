@@ -7,8 +7,8 @@ import Router from "koa-router";
 const configuration = new Configuration({
     apiKey: process.env.APP_KEY,
 });
-const openai = new OpenAIApi(configuration);
-const response = await openai.listEngines();
+//const openai = new OpenAIApi(configuration);
+//const response = await openai.listEngines();
 
 const app = new Koa()
 const router = new Router();
@@ -18,30 +18,44 @@ router.get("/chat", async (ctx, next) => {
     // 获取请求中的参数
     const { prompt } = ctx.request.query;
 
-    const res = await openai.createCompletion({
-        // 对话模型
-        model: "text-davinci-003",//  dialogue-babi-001 对话模型
-        prompt: prompt,
-        max_tokens: 2048,
-        temperature: 0.2
-    })
-    // 将生成的内容返回给客户端
-    ctx.body = res.data.choices[0].text
+    //const res = await openai.createCompletion({
+    //    // 对话模型
+    //    model: "text-davinci-003",//  dialogue-babi-001 对话模型
+    //    prompt: prompt,
+    //    max_tokens: 2048,
+    //    temperature: 0.2
+    //})
+    //// 将生成的内容返回给客户端
+    //ctx.body = res.data.choices[0].text
+    ctx.body="24532542354354"
+    console.log(ctx.response)
+    ctx.response.body="1232432423"
+    console.log(ctx.response)
 });
+
+
+//function getMessage(){
+//   ctx.body = 'Your request has been logged.';
+//   console.log(this.response);
+//}
+//
+//router.get("/chat",getMessage)
+
+
 
 router.get("/image", async (ctx, next) => {
     // 获取请求中的参数
     const { prompt } = ctx.request.query;
-    const res = await openai.createImage({
-        // 对话模型
-        model: "image-alpha-001",
-        prompt: prompt,
-        size: "256x256",
-        n: 1
-    })
-    // 将生成的内容返回给客户端
-    var url = res.data.data[0].url
-
+    //const res = await openai.createImage({
+    //    // 对话模型
+    //    model: "image-alpha-001",
+    //    prompt: prompt,
+    //    size: "256x256",
+    //    n: 1
+    //})
+    //// 将生成的内容返回给客户端
+    //var url = res.data.data[0].url
+//
     ctx.body = "<img src=\"" + url + "\"></>"
 });
 
@@ -50,7 +64,7 @@ router.get("/image", async (ctx, next) => {
 app.use(router.routes()).use(router.allowedMethods());
 
 // 启动服务器
-app.listen(process.env.PORT, () => {
-    console.log("Server is listening on port " + process.env.PORT);
+app.listen(3000, () => {
+    console.log("Server is listening on port " + 3000);
 });
 

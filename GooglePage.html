@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Google Search</title>
+    <style>
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+      }
+      #header {
+        background-color: #f2f2f2;
+        padding: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1;
+      }
+      #header img {
+        height: 30px;
+      }
+      #search-form {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+      #search-form input[type="text"] {
+        width: 50%;
+        height: 40px;
+        padding: 10px;
+        font-size: 16px;
+        border: none;
+        border-radius: 25px;
+        box-shadow: 0 1px 6px rgba(32, 33, 36, 0.28);
+        outline: none;
+      }
+      #search-form button[type="submit"] {
+        width: 100px;
+        height: 40px;
+        margin-top: 10px;
+        background-color: #f2f2f2;
+        color: #5f6368;
+        border: none;
+        border-radius: 4px;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        outline: none;
+        transition: background-color 0.2s ease-in-out;
+      }
+      #search-form button[type="submit"]:hover {
+        background-color: #e8e8e8;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="header">
+      <img src="logo.png" alt="Doogle logo">
+    </div>
+    <div id="search-form">
+      <form action="https://chatgpt-nodejs-production-56da.up.railway.app/chat" method="GET">
+        <img src="logo.png" alt="Google logo">
+        <input type="text" id="search-box" name="prompt" placeholder="Search Google">
+        <button type="submit">Google Search</button>
+        <button type="button">I'm Feeling Lucky</button>
+      </form>
+    </div>
+  </body>
+</html>
+
+.then(response => response.json())
+      .then(data => {
+        // 创建新的对话消息元素
+        const botMessage = document.createElement('div');
+        botMessage.className = 'bot-message';
+        botMessage.innerText = data.output;
+        messageContainer.appendChild(botMessage);
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
