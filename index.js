@@ -8,7 +8,7 @@ const configuration = new Configuration({
     apiKey: process.env.APP_KEY,
 });
 const openai = new OpenAIApi(configuration);
-//const response = await openai.listEngines();
+const response = await openai.listEngines();
 
 const app = new Koa()
 const router = new Router();
@@ -26,28 +26,22 @@ router.get("/chat", async (ctx, next) => {
         temperature: 0.2
     })
     // 将生成的内容返回给客户端
-    console.log("receive message")
     ctx.body = res.data.choices[0].text
-    //ctx.response.set("Access-Control-Allow-Origin", "*")
 });
-
-// router.get("/", async (ctx, next) => {
-//     ctx.redirect("/homePage.html")
-// });
 
 router.get("/image", async (ctx, next) => {
     // 获取请求中的参数
     const { prompt } = ctx.request.query;
-    //const res = await openai.createImage({
-    //    // 对话模型
-    //    model: "image-alpha-001",
-    //    prompt: prompt,
-    //    size: "256x256",
-    //    n: 1
-    //})
-    //// 将生成的内容返回给客户端
-    //var url = res.data.data[0].url
-//
+    const res = await openai.createImage({
+        // 对话模型
+        model: "image-alpha-001",
+        prompt: prompt,
+        size: "256x256",
+        n: 1
+    })
+    // 将生成的内容返回给客户端
+    var url = res.data.data[0].url
+
     ctx.body = "<img src=\"" + url + "\"></>"
 });
 
@@ -56,7 +50,7 @@ router.get("/image", async (ctx, next) => {
 app.use(router.routes()).use(router.allowedMethods());
 
 // 启动服务器
-app.listen(3000, () => {
-    console.log("Server is listening on port " + 3000);
+app.listen(process.env.PORT, () => {
+    console.log("Server is listening on port " + process.env.PORT);
 });
 
