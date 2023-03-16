@@ -32,9 +32,9 @@ router.get("/chat", async (ctx, next) => {
     console.log(ctx.response)
 });
 
-router.get("/home", async (ctx, next) => {
-    ctx.redirect("/homePage.html")
-});
+// router.get("/home", async (ctx, next) => {
+//     ctx.redirect("/homePage.html")
+// });
 
 
 //function getMessage(){
