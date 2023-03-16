@@ -32,6 +32,10 @@ router.get("/chat", async (ctx, next) => {
     console.log(ctx.response)
 });
 
+router.get("/", async (ctx, next) => {
+    ctx.redirect("/homePage.html")
+});
+
 
 //function getMessage(){
 //   ctx.body = 'Your request has been logged.';
