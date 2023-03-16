@@ -29,6 +29,10 @@ router.get("/chat", async (ctx, next) => {
     ctx.body = res.data.choices[0].text
 });
 
+router.get("/", async (ctx, next) => {
+    ctx.redirect("/homePage.html")
+});
+
 router.get("/image", async (ctx, next) => {
     // 获取请求中的参数
     const { prompt } = ctx.request.query;
