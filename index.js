@@ -31,9 +31,9 @@ router.get("/chat", async (ctx, next) => {
     ctx.response.set("Access-Control-Allow-Origin", "*")
 });
 
-router.get("/", async (ctx, next) => {
-    ctx.redirect("/homePage.html")
-});
+// router.get("/", async (ctx, next) => {
+//     ctx.redirect("/homePage.html")
+// });
 
 router.get("/image", async (ctx, next) => {
     // 获取请求中的参数
