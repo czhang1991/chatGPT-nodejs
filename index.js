@@ -26,8 +26,9 @@ router.get("/chat", async (ctx, next) => {
         temperature: 0.2
     })
     // 将生成的内容返回给客户端
-    ctx.response.set("Access-Control-Allow-Origin", "*")
+    console.log("receive message")
     ctx.body = res.data.choices[0].text
+    ctx.response.set("Access-Control-Allow-Origin", "*")
     console.log(ctx.response)
 });
 
