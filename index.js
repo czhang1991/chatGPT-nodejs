@@ -28,7 +28,7 @@ router.get("/chat", async (ctx, next) => {
     // 将生成的内容返回给客户端
     console.log("receive message")
     ctx.body = res.data.choices[0].text
-    ctx.response.set("Access-Control-Allow-Origin", "*")
+    //ctx.response.set("Access-Control-Allow-Origin", "*")
 });
 
 // router.get("/", async (ctx, next) => {
