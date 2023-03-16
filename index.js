@@ -7,7 +7,7 @@ import Router from "koa-router";
 const configuration = new Configuration({
     apiKey: process.env.APP_KEY,
 });
-//const openai = new OpenAIApi(configuration);
+const openai = new OpenAIApi(configuration);
 //const response = await openai.listEngines();
 
 const app = new Koa()
@@ -29,22 +29,11 @@ router.get("/chat", async (ctx, next) => {
     console.log("receive message")
     ctx.body = res.data.choices[0].text
     ctx.response.set("Access-Control-Allow-Origin", "*")
-    console.log(ctx.response)
 });
 
-// router.get("/home", async (ctx, next) => {
-//     ctx.redirect("/homePage.html")
-// });
-
-
-//function getMessage(){
-//   ctx.body = 'Your request has been logged.';
-//   console.log(this.response);
-//}
-//
-//router.get("/chat",getMessage)
-
-
+router.get("/", async (ctx, next) => {
+    ctx.redirect("/homePage.html")
+});
 
 router.get("/image", async (ctx, next) => {
     // 获取请求中的参数
