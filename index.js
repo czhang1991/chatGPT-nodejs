@@ -32,7 +32,7 @@ router.get("/chat", async (ctx, next) => {
     console.log(ctx.response)
 });
 
-router.get("/", async (ctx, next) => {
+router.get("/home", async (ctx, next) => {
     ctx.redirect("/homePage.html")
 });
 
