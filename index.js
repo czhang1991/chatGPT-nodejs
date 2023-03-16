@@ -18,18 +18,16 @@ router.get("/chat", async (ctx, next) => {
     // 获取请求中的参数
     const { prompt } = ctx.request.query;
 
-    //const res = await openai.createCompletion({
-    //    // 对话模型
-    //    model: "text-davinci-003",//  dialogue-babi-001 对话模型
-    //    prompt: prompt,
-    //    max_tokens: 2048,
-    //    temperature: 0.2
-    //})
-    //// 将生成的内容返回给客户端
-    //ctx.body = res.data.choices[0].text
-    ctx.body="24532542354354"
-    console.log(ctx.response)
-    ctx.response.body="1232432423"
+    const res = await openai.createCompletion({
+        // 对话模型
+        model: "text-davinci-003",//  dialogue-babi-001 对话模型
+        prompt: prompt,
+        max_tokens: 2048,
+        temperature: 0.2
+    })
+    // 将生成的内容返回给客户端
+    ctx.response.set("Access-Control-Allow-Origin", "*")
+    ctx.body = res.data.choices[0].text
     console.log(ctx.response)
 });
 
